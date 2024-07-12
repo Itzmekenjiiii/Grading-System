@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: "Arial, san_serif";
+            text-align: center;
+            margin: 50px;
+            background-color: rgb(11, 137, 130);
+        }
+        #gradeOutput{
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bolder;
+        }
+        h1{
+            color: rgb(255, 255, 255);
+            font-weight: bolder;
+            font-size: 70px;
+        }
+        button{
+            border: solid 3px rgb(0, 0, 0);
+            color: black;
+            border-radius: 5px;
+        }
+        input{
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            font-weight: bolder;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GRADING SYSTEM</h1>
+    <label for="score" style="font-weight: bolder;">ENTER YOUR SCORE:</label>
+    <input id="score" type="number" placeholder=" " min="0" max="100">
+    <button onclick="calculateGrade()" style="font-weight: bolder;">SUBMIT</button>
+    <div class="gradeOutput" id="gradeOutput">
+
+    </div>
+    <script>
+        function calculateGrade(){
+            const score = document.getElementById("score").value;
+            
+            if (isNaN(score)||score < 0 || score == "" || score > 100){
+                alert("PLEASE ENTER A VALID SCORE BETWEEN 0-100");
+                return;
+            }
+            
+            var grades = {
+                A:{min: 90,max : 100},
+                B:{min: 85,max : 89},
+                C:{min: 80,max : 84},
+                D:{min: 75,max : 79},
+                F:{min: 0,max : 74}
+            }
+            var grade=" ";
+            for(var key in grades){
+                if (score >= grades[key].min && score <= grades[key].max){
+                    grade = key; 
+                    break;
+                }
+                }   
+            document.getElementById("gradeOutput").innerText="Your grade is: " + grade;
+        }
+    
+    </script>
+</body>
+</html>
